@@ -1,0 +1,20 @@
+<launch>
+<arg name="map_file" default="$(find ebot_nav)/maps/ebot_map.yaml"/>
+<node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+<!--publish the state of the robot i.e. tf-->
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+
+<!--runnning rviz node-->
+<!--saving rviz configurations in a rviz folder-->
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find ebot_nav)/config/config.rviz" />
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <param name="use_gui" value="false" />
+</node>
+
+<node pkg="ebot_nav" name="navigation" type="navigation.py" > 
+</node>
+<include file="$(find ebot_nav)/launch/amcl.launch"/>
+<include file="$(find ebot_nav)/launch/move_base.launch"/>
+</launch>
