@@ -1,0 +1,12 @@
+obstacle_range: 2.5
+raytrace_range: 3.5
+footprint: [[-0.12, -0.13], [-0.12, 0.13], [0.12, 0.13], [0.12, -0.13]]
+inflation_radius: 0.95
+cost_scaling_factor: 5
+observation_sources: scan
+scan:
+  data_type: LaserScan
+  topic: ebot/base/scan
+  marking: true
+  clearing: true
+map_type: costmap
